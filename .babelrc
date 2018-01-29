@@ -1,0 +1,18 @@
+{
+  "presets": [
+    ["es2015"],
+    "stage-2",
+    "react"
+  ],
+
+  "plugins": [
+    "react-hot-loader/babel",
+    "syntax-class-properties",
+    "syntax-decorators",
+    "syntax-object-rest-spread",
+    "transform-class-properties",
+    "transform-decorators-legacy",
+    "transform-object-assign",
+    "transform-object-rest-spread"
+  ]
+}
