@@ -1,19 +1,10 @@
+import objectAssign from 'object-assign';
 import {  ADD_FAVORITE,
           REMOVE_FAVORITE,
           LOAD_FAVORITE,
           SAVE_SETTINGS,
-          LOAD_SETTINGS, } from '../actions/constants';
-
-export const loadState = (key) => {
-  try {
-    const serializedState = localStorage.getItem(key);
-    if (serializedState === null)
-      return undefined;
-    return JSON.parse(serializedState);
-  } catch (e) {
-    return undefined;
-  }
-}
+          LOAD_SETTINGS,
+          CLEAR_SETTINGS, } from '../actions/constants';
 
 export const localStorageMiddleware = store => next => action => {
   if (actionTypeEndsInFavorite(action.type)) {
@@ -46,8 +37,12 @@ export const localStorageMiddleware = store => next => action => {
         newAction.settings = localSettingsState;
         return next(newAction);
       case SAVE_SETTINGS:
-        let addedToSettings = {...localSettingsState, ...action.settings};
+        const cleanSettings = removeSettingsKeys(objectAssign({}, action.settings))
+        let addedToSettings = {...localSettingsState, ...cleanSettings};
         saveState(settingsKey, addedToSettings);
+        return next(action);
+      case CLEAR_SETTINGS:
+        clearItem(settingsKey);
         return next(action);
       default:
         return next(action);
@@ -56,6 +51,16 @@ export const localStorageMiddleware = store => next => action => {
   return next(action);
 }
 
+export function loadState (key) {
+  try {
+    const serializedState = localStorage.getItem(key);
+    if (serializedState === null)
+      return undefined;
+    return JSON.parse(serializedState);
+  } catch (e) {
+    return undefined;
+  }
+}
 
 function saveState(key, state) {
   try {
@@ -64,6 +69,20 @@ function saveState(key, state) {
   } catch (e) {
     // ignore write errors.
   }
+}
+
+function clearItem(key) {
+  try {
+    localStorage.removeItem(key);
+  } catch (e) {
+    // ignore delete error
+  }
+}
+
+function removeSettingsKeys(settings) {
+  delete settings['searchSubmitted']
+  delete settings['favoritesToggled']
+  return settings;
 }
 
 function actionTypeEndsInFavorite(type) {

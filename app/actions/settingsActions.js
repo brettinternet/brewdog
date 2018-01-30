@@ -1,4 +1,4 @@
-import { SAVE_SETTINGS, LOAD_SETTINGS } from './constants';
+import { SAVE_SETTINGS, LOAD_SETTINGS, CLEAR_SETTINGS } from './constants';
 
 const saveSettingsSuccess = (settings) => {
   return dispatch => dispatch({ type: SAVE_SETTINGS, settings });
@@ -15,4 +15,8 @@ export function saveSettings(settings) {
 
 export function loadSettings() {
   return { type: LOAD_SETTINGS };
+}
+
+export function clearSettings() {
+  return { type: CLEAR_SETTINGS }
 }

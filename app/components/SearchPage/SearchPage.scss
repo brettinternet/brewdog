@@ -1,6 +1,6 @@
-.error-wrapper {
+.wrapper {
   // @include transition(fadein, .2s);
-  width: $content-width;
+  max-width: $content-width;
   text-align: center;
 
   .error-message {
@@ -9,5 +9,70 @@
     display: inline-block;
     margin: 0 auto;
     padding: $spacing-unit / 2;
+  }
+}
+
+.loader {
+  margin: $spacing-unit;
+}
+
+
+
+.search-results {
+
+  .results-count {
+    color: $blue-color-light;
+  }
+
+  .card {
+    width: $spacing-unit * 10;
+    float: left;
+    position: relative;
+    cursor: pointer;
+    color: $cement-color-wet;
+
+    &:hover {
+      background-color: $cement-color-dry;
+      text-shadow: 1px 1px 1px $cement-color-dry;
+      color: $text-color;
+    }
+
+    .name {
+      position: absolute;
+      z-index: 1;
+      padding: 7px 5px;
+      color: $text-color;
+    }
+
+    .img-wrapper {
+      background-color: rgba($cement-color-dry, .4);
+      padding: $spacing-unit / 4;
+      text-align: center;
+      margin: $spacing-unit / 4 auto;
+      position: relative;
+    }
+
+    img {
+      height: $spacing-unit * 6;
+    }
+  }
+
+  .date {
+    @include relative-font-size(.8);
+    color: $grey-color;
+    font-weight: 700;
+    margin-left: 5px;
+  }
+
+  .description {
+    @include relative-font-size(.8);
+    padding: 0 5px;
+  }
+
+  .fav-btn {
+    position: absolute;
+    right: 0;
+    top: 70px;
+    background-color: none;
   }
 }

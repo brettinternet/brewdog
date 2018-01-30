@@ -1,26 +1,17 @@
-import { LOAD_DATA_SUCCESS, SORT_DATA, NEXT_PAGE_SUCCESS } from '../actions/constants';
-import objectAssign from 'object-assign';
+import { LOAD_DATA_SUCCESS, SORT_DATA, CLEAR_SETTINGS } from '../actions/constants';
 
 const initialState = {
-  data: [],
-  // nextPageData: [],
-  // nextPage: false,
+  data: []
 };
 
-export default function beer(state = initialState, action) {
+export default function beer(state = initialState.data, action) {
   switch (action.type) {
     case LOAD_DATA_SUCCESS:
-      // if (state.nextPage && state.nextPageData.length > 0)
-        // return objectAssign({}, state, { data: state.nextPageData });
-      // else
-      return objectAssign({}, state, { data: action.data });
+      return { data: action.data };
     case SORT_DATA:
-      return objectAssign({}, state, { data: action.data });
-    // case NEXT_PAGE_SUCCESS:
-    //   if (action.nextPageData.length > 0)
-    //     return objectAssign({}, state, { nextPage: true, nextPageData: action.nextPageData });
-    //   else
-    //     return objectAssign({}, state, { nextPage: false, nextPageData: [] });
+      return { data: action.data };
+    case CLEAR_SETTINGS:
+      return { data: [] };
     default:
       return state;
   }

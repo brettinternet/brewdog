@@ -7,6 +7,14 @@
     width: 100%;
     max-width: $content-width;
 
+    ul:first-child > li {
+      border-left: 1px solid $teal-color;
+      font-weight: 700;
+      a {
+        margin-left: 6px;
+      }
+    }
+
     .pad {
       display: table-cell;
       width: auto;

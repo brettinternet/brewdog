@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function SearchBar({ value, onKeyPress, onChange, onClick, onClickRandom, onClickFavorites }) {
   return (
-    <div className="search-bar">
+    <div className="search-bar row">
       <input type="search" placeholder="Search" className="input"
         onChange={onChange}
         onKeyPress={onKeyPress}

@@ -4,7 +4,7 @@ export default function SortBy({ value, asc, onChange, onClick }) {
   return (
     <div className="sort-by group">
       <label htmlFor="sort">Sort by:</label>
-      <select id="sort" className="sort-select"
+      <select id="sort"
         onChange={onChange}
         value={value}
       >

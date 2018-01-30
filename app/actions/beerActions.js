@@ -1,4 +1,4 @@
-import { LOAD_DATA_SUCCESS, SORT_DATA, NEXT_PAGE_SUCCESS } from './constants';
+import { LOAD_DATA_SUCCESS, SORT_DATA } from './constants';
 import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 import request from '../utils/request';
 import sortBeers from '../utils/sort';
@@ -23,6 +23,17 @@ export const searchData = (urlObj, sortBy, asc) => {
         dispatch(loadDataError(error))
       });
   };
+}
+
+export function sortData(data, sortBy, asc) {
+  return { type: SORT_DATA, data: sortBeers(data, sortBy, asc) }
+}
+
+export function viewFavorites () {
+  return (dispatch) => {
+    dispatch(beginAjaxCall());
+    return dispatch(loadDataSuccess(loadState('favorites')));
+  }
 }
 
 // const loadNextPageSearchSuccess = (nextPageData) => {
@@ -51,14 +62,3 @@ export const searchData = (urlObj, sortBy, asc) => {
 //       });
 //   }
 // }
-
-export function sortData(data, sortBy, asc) {
-  return { type: SORT_DATA, data: sortBeers(data, sortBy, asc) }
-}
-
-export const viewFavorites = () => {
-  return (dispatch) => {
-    dispatch(beginAjaxCall());
-    return dispatch(loadDataSuccess(loadState('favorites')));
-  }
-}

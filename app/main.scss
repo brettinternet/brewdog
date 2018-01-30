@@ -43,7 +43,7 @@ $on-laptop:        800px !default;
 
 
 main {
-  margin: auto;
+  margin: 0 auto $spacing-unit auto;
   padding: $spacing-unit / 2;
   max-width: $content-width;
 }
@@ -201,6 +201,7 @@ h1, h2, h3, h4, h5, h6 {
 "components/App/Header",
 "components/SearchPage/SearchPage",
 "components/SearchForm/SearchForm",
-"components/Modal/Modal",
-"components/AboutPage/AboutPage"
+"components/AboutPage/AboutPage",
+"components/NotFoundPage/NotFoundPage",
+"components/Modal/Modal"
 ;

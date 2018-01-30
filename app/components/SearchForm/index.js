@@ -21,19 +21,21 @@ const SearchForm = (props) => {
       />
 
       <div className="search-options">
-        <SearchType
-          value={props.searchBy}
-          onChange={props.handleSearchByChange}
-        />
+        <div className="row">
+          <SearchType
+            value={props.searchBy}
+            onChange={props.handleSearchByChange}
+          />
 
-        <SortBy
-          onChange={props.handleSortByChange}
-          value={props.sortBy}
-          onClick={props.handleSortAscToggle}
-          asc={props.sortAsc}
-        />
+          <SortBy
+            onChange={props.handleSortByChange}
+            value={props.sortBy}
+            onClick={props.handleSortAscToggle}
+            asc={props.sortAsc}
+          />
+        </div>
 
-        <div>
+        <div className="row">
           <SelectCount
             onChange={props.handlePerPageChange}
             value={props.perPage}
@@ -45,7 +47,15 @@ const SearchForm = (props) => {
             onChangeSpec={props.handleBrewSpecChange}
             value={props.brewSpec}
           />
+
+        <button className="btn clear-filters"
+            onClick={props.handleClearSettings}
+          >
+            <i className="fa fa-filter"></i>Clear
+          </button>
         </div>
+
+
 
         <PageButtons
           onClickPrevious={props.getPreviousPageSearchData}

@@ -1,4 +1,4 @@
-import { SAVE_SETTINGS, LOAD_SETTINGS } from '../actions/constants';
+import { SAVE_SETTINGS, LOAD_SETTINGS, CLEAR_SETTINGS } from '../actions/constants';
 import objectAssign from 'object-assign';
 
 const initialState = {
@@ -10,6 +10,8 @@ const initialState = {
   perPage: 20,
   brewDate: null,
   brewSpec: 'brewed_before',
+  searchSubmitted: false,
+  favoritesToggled: false,
   error: '',
 };
 
@@ -19,6 +21,8 @@ export default function settingsReducer(state = initialState, action) {
       return objectAssign({}, state, action.settings);
     case LOAD_SETTINGS:
       return objectAssign({}, state, action.settings);
+    case CLEAR_SETTINGS:
+      return initialState;
     default:
       return state;
   }

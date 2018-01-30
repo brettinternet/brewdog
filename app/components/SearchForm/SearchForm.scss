@@ -5,11 +5,11 @@
     padding: 0 $spacing-unit / 4;
     color: $text-color;
     height: $spacing-unit / 1.5;
-    // margin: $spacing-unit / 4 0;
     outline: none;
     border: none;
     border-radius: 0;
-    -webkit-appearance: none;
+    // -webkit-appearance: none;
+    border-image-width: 0;
     @include relative-font-size(.7);
   }
 }
@@ -27,6 +27,7 @@
 .btn {
   background-color: $blue-color-light;
   cursor: pointer;
+  padding: 0 $spacing-unit / 3;
   @include transition(background-color, .2s);
 
   &:hover {
@@ -52,7 +53,12 @@
   margin: $spacing-unit / 4 0;
   outline: none;
   border: none;
-  // border-radius: 1px;
+  display: inline-block;
+}
+
+.row {
+  text-align: center;
+  width: 100%;
 }
 
 .group {
@@ -90,8 +96,6 @@
   }
 
   .sort-by {
-    margin-right: $spacing-unit;
-
     label {
       margin-right: $spacing-unit / 3;
     }
@@ -115,7 +119,7 @@
     }
     input {
       height: $spacing-unit / 1.5;
-      width: $spacing-unit * 2.5;
+      width: $spacing-unit * 3;
       text-align: center;
     }
 
@@ -123,10 +127,19 @@
       display: inline-block;
     }
   }
+
+  .clear-filters {
+    height: $spacing-unit / 1.5;
+    margin: 0 0 0 $spacing-unit;;
+  }
+
+  .fa-filter {
+    margin-right: 4px;
+  }
 }
 
 .page-buttons {
-  width: $content-width;
+  max-width: $content-width;
   text-align: center;
 
   .group-buttons {

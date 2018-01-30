@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { searchData, sortData, viewFavorites } from '../../actions/beerActions';
-import { saveSettings } from '../../actions/settingsActions';
+import { saveSettings, clearSettings } from '../../actions/settingsActions';
 import { NO_SEARCH_VALUE } from '../../actions/constants';
 import { getSearchUrl, getRandomUrl } from '../../utils/getUrl';
 
@@ -103,7 +103,8 @@ class SearchPage extends Component {
             sortBy,
             sortAsc,
             brewDate,
-            brewSpec, } = this.props.settings;
+            brewSpec,
+            favoritesToggled } = this.props.settings;
     const searchSettings = {
       searchValue,
       searchBy,
@@ -112,7 +113,15 @@ class SearchPage extends Component {
       brewDate,
       brewSpec,
     }
-    this.props.actions.searchData(getSearchUrl(searchSettings), sortBy, sortAsc);
+    const pageSettings = {
+      favoritesToggled: false,
+      searchSubmitted: true,
+      error: '',
+    };
+    if (favoritesToggled) pageSettings.page = 1;
+    this.props.actions.saveSettings(pageSettings)
+      .then(() => this.props.actions.searchData(getSearchUrl(searchSettings), sortBy, sortAsc))
+    ;
   }
 
   getNextPageSearchData = () => {
@@ -126,6 +135,15 @@ class SearchPage extends Component {
 
   submitRandomSearch = () => {
     this.props.actions.searchData(getRandomUrl());
+  }
+
+  handleViewFavorites = () => {
+    this.props.actions.saveSettings({
+      searchSubmitted: true,
+      favoritesToggled: true,
+      error: '',
+      page: 1
+    }).then(() => this.props.actions.viewFavorites());
   }
 
   render () {
@@ -152,10 +170,17 @@ class SearchPage extends Component {
       brewSpec: this.props.settings.brewSpec,
       handleBrewDateChange: this.handleBrewDateChange,
       handleBrewSpecChange: this.handleBrewSpecChange,
-      handleViewFavorites: this.props.actions.viewFavorites,
+      handleViewFavorites: this.handleViewFavorites,
+      handleClearSettings: this.props.actions.clearSettings,
     }
     return (
       <main className="home-page">
+        {
+          this.props.settings.favoritesToggled ?
+            <h1>Favorites</h1>
+          :
+            <h1>Search</h1>
+        }
         <SearchForm { ...searchFormProps } />
         { this.props.settings.error && <DisplayError message={this.props.settings.error} /> }
 
@@ -167,7 +192,7 @@ class SearchPage extends Component {
         }
 
         {
-          multiplePagesBool &&
+          !(this.props.ajaxCallsInProgress > 0) && multiplePagesBool &&
           <PageButtons
             onClickPrevious={this.getPreviousPageSearchData}
             currentPage={this.props.settings.page}
@@ -184,11 +209,12 @@ class SearchPage extends Component {
 SearchPage.propTypes = {
   actions: PropTypes.object.isRequired,
   beer: PropTypes.array,
-  total: PropTypes.number,
+  favorites: PropTypes.array,
   ajaxCallsInProgress: PropTypes.number
 };
 
 SearchPage.defaultProps = {
+  beer: [],
   searchBy: 'beer_name',
   sortBy: 'id',
   sortAsc: true,
@@ -198,6 +224,7 @@ SearchPage.defaultProps = {
 
 function mapStateToProps(state) {
   return {
+    favorites: state.favorites,
     beer: state.beer.data,
     settings: state.settings,
     ajaxCallsInProgress: state.ajaxCallsInProgress
@@ -207,7 +234,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      searchData, sortData, viewFavorites, saveSettings,
+      searchData, sortData, viewFavorites, clearSettings, saveSettings,
     }, dispatch)
   };
 }
