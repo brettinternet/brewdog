@@ -2,6 +2,7 @@
   // @include transition(fadein, .2s);
   max-width: $content-width;
   text-align: center;
+  position: relative;
 
   .error-message {
     background-color: $red-color;
@@ -19,6 +20,10 @@
 
 
 .search-results {
+
+  .sizer {
+    width: $content-width;
+  }
 
   .results-count {
     color: $blue-color-light;

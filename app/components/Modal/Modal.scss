@@ -1,4 +1,4 @@
-#overlay {
+.overlay {
   z-index: 2;
   background-color: rgba(0,0,0,0.5);
   position: absolute;
@@ -20,4 +20,8 @@
 
 .modal-window {
   background-color: $blue-color-dark;
+  padding: $spacing-unit $spacing-unit * 2;
+  border: 1px solid $teal-color;
+  border-top: $spacing-unit / 1.5 solid $teal-color;
+  border-radius: 3px;
 }

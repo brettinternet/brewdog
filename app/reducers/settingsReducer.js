@@ -12,6 +12,7 @@ const initialState = {
   brewSpec: 'brewed_before',
   searchSubmitted: false,
   favoritesToggled: false,
+  selectedBeer: null,
   error: '',
 };
 

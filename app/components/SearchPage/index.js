@@ -12,6 +12,7 @@ import SearchResults from './SearchResults';
 import BeerLoader from './BeerLoader';
 import DisplayError from './DisplayError';
 import PageButtons from '../SearchForm/PageButtons';
+import Modal from '../Modal';
 
 class SearchPage extends Component {
 
@@ -146,8 +147,13 @@ class SearchPage extends Component {
     }).then(() => this.props.actions.viewFavorites());
   }
 
+  handleCloseModal = () => {
+    this.props.actions.saveSettings({ selectedBeer: null });
+  }
+
   render () {
     const multiplePagesBool = this.props.beer.length == this.props.settings.perPage;
+    const selectedBeer = this.props.beer.filter(drink => drink.id == this.props.settings.selectedBeer)[0];
     const searchFormProps = {
       searchBy: this.props.settings.searchBy,
       handleSearchByChange: this.handleSearchByChange,
@@ -198,6 +204,13 @@ class SearchPage extends Component {
             currentPage={this.props.settings.page}
             onClickNext={this.getNextPageSearchData}
             multiplePagesBool={multiplePagesBool}
+          />
+        }
+        {
+          this.props.settings.selectedBeer &&
+          <Modal
+            beer={selectedBeer}
+            onClick={this.handleCloseModal}
           />
         }
 
