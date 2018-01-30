@@ -1,0 +1,40 @@
+.header {
+  width: 100%;
+
+  .table {
+    margin: 0 auto;
+    display: table;
+    width: 100%;
+    max-width: $content-width;
+
+    .pad {
+      display: table-cell;
+      width: auto;
+    }
+
+    ul {
+      display: table-cell;
+      height: $spacing-unit * 2;
+      list-style: none;
+      margin: 0;
+      vertical-align: middle;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    li {
+      display: inline-block;
+      margin: 0 $spacing-unit / 2;
+    }
+
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .active-link {
+    color: lighten($blue-color-light, 25%);
+    border-bottom: 1px solid $teal-color;
+  }
+}

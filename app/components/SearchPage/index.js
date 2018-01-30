@@ -6,10 +6,12 @@ import { searchData, sortData, viewFavorites } from '../../actions/beerActions';
 import { saveSettings } from '../../actions/settingsActions';
 import { NO_SEARCH_VALUE } from '../../actions/constants';
 import { getSearchUrl, getRandomUrl } from '../../utils/getUrl';
-import SearchForm from './SearchForm';
+
+import SearchForm from '../SearchForm';
 import SearchResults from './SearchResults';
 import BeerLoader from './BeerLoader';
 import DisplayError from './DisplayError';
+import PageButtons from '../SearchForm/PageButtons';
 
 class SearchPage extends Component {
 
@@ -127,6 +129,7 @@ class SearchPage extends Component {
   }
 
   render () {
+    const multiplePagesBool = this.props.beer.length == this.props.settings.perPage;
     const searchFormProps = {
       searchBy: this.props.settings.searchBy,
       handleSearchByChange: this.handleSearchByChange,
@@ -141,7 +144,7 @@ class SearchPage extends Component {
       handleSortAscToggle: this.handleSortAscToggle,
       getNextPageSearchData: this.getNextPageSearchData,
       getPreviousPageSearchData: this.getPreviousPageSearchData,
-      multiplePagesBool: this.props.beer.length == this.props.settings.perPage,
+      multiplePagesBool: multiplePagesBool,
       page: this.props.settings.page,
       perPage: this.props.settings.perPage,
       handlePerPageChange: this.handlePerPageChange,
@@ -152,7 +155,7 @@ class SearchPage extends Component {
       handleViewFavorites: this.props.actions.viewFavorites,
     }
     return (
-      <section className="home-page">
+      <main className="home-page">
         <SearchForm { ...searchFormProps } />
         { this.props.settings.error && <DisplayError message={this.props.settings.error} /> }
 
@@ -163,7 +166,17 @@ class SearchPage extends Component {
             <SearchResults />
         }
 
-      </section>
+        {
+          multiplePagesBool &&
+          <PageButtons
+            onClickPrevious={this.getPreviousPageSearchData}
+            currentPage={this.props.settings.page}
+            onClickNext={this.getNextPageSearchData}
+            multiplePagesBool={multiplePagesBool}
+          />
+        }
+
+      </main>
     );
   }
 };

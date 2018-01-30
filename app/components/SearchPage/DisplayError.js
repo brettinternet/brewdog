@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const DisplayError = ({ message }) => {
   return (
     <div className="error-wrapper">
-      <div>{ message }</div>
+      <div className="error-message">{ message }</div>
     </div>
   );
 };

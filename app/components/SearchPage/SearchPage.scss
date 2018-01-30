@@ -1,0 +1,13 @@
+.error-wrapper {
+  // @include transition(fadein, .2s);
+  width: $content-width;
+  text-align: center;
+
+  .error-message {
+    background-color: $red-color;
+    width: auto;
+    display: inline-block;
+    margin: 0 auto;
+    padding: $spacing-unit / 2;
+  }
+}

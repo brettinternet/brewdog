@@ -1,0 +1,23 @@
+#overlay {
+  z-index: 2;
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modal {
+  z-index: 99;
+  width: fit-content + 40px;
+  margin-top: $spacing-unit;
+  position: absolute;
+  top: $spacing-unit;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.modal-window {
+  background-color: $blue-color-dark;
+}

@@ -16,7 +16,18 @@ $cement-color-wet:    #B4D0DE;
 $text-color:          #FFF;
 
 $base-font-size:      16px;
-$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$base-font-family: "Open Sans", Arial, sans-serif !default;
+
+$content-width:    800px !default;
+
+$on-palm:          600px !default;
+$on-laptop:        800px !default;
+
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
 
 @mixin relative-font-size($ratio) {
   font-size: $base-font-size * $ratio;
@@ -31,215 +42,165 @@ $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 }
 
 
+main {
+  margin: auto;
+  padding: $spacing-unit / 2;
+  max-width: $content-width;
+}
 
-// /**
-//  * Reset some basic elements
-//  */
-//
-//
-// *, *:before, *:after {
-//   box-sizing: inherit;
-// }
-//
-// body, h1, h2, h3, h4, h5, h6,
-// p, blockquote, pre,
-// dl, dd, ol, ul, figure {
-//   margin: 0;
-//   padding: 0;
-// }
-//
-// hr {
-//   border: 1px solid #eaecef;
-//   margin: $spacing-unit 0;
-//   padding: 0;
-// }
-//
-//
-//
-// /**
-//  * Basic styling
-//  */
-// body {
-//   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-//   color: $text-color;
-//   background-color: $background-color;
-//   -webkit-text-size-adjust: 100%;
-//   -webkit-font-feature-settings: "kern" 1;
-//      -moz-font-feature-settings: "kern" 1;
-//        -o-font-feature-settings: "kern" 1;
-//           font-feature-settings: "kern" 1;
-//   font-kerning: normal;
-// }
-//
-//
-//
-// /**
-//  * Set `margin-bottom` to maintain vertical rhythm
-//  */
-// h1, h2, h3, h4, h5, h6,
-// p, blockquote, pre,
-// ul, ol, dl, figure,
-// %vertical-rhythm {
-//   margin-bottom: $spacing-unit / 2;
-// }
-//
-// pre {
-//   margin-top: $spacing-unit / 6;
-// }
-//
-//
-//
-// /**
-//  * Images
-//  */
-// img {
-//   max-width: 100%;
-//   vertical-align: middle;
-// }
-//
-//
-//
-// /**
-//  * Figures
-//  */
-// figure > img {
-//   display: block;
-// }
-//
-// figcaption {
-//   font-size: $small-font-size;
-// }
-//
-//
-//
-// /**
-//  * Lists
-//  */
-// ul, ol {
-//   margin-left: $spacing-unit;
-// }
-//
-// li {
-//   > ul,
-//   > ol {
-//     margin-bottom: 0;
-//   }
-// }
-//
-//
-//
-// /**
-//  * Headings
-//  */
-// h1, h2, h3, h4, h5, h6 {
-//   font-weight: $base-font-weight;
-// }
-//
-//
-//
-// /**
-//  * Links
-//  */
-// .landing-content a { white-space: nowrap; }
-//
-// a {
-//   color: $brand-color;
-//   fill: $brand-color;
-//   text-decoration: none;
-//   cursor: pointer;
-//
-//   &:visited {
-//     color: $grey-color;
-//   }
-//
-//   &:hover {
-//     color: $grey-color-dark;
-//     text-decoration: underline;
-//   }
-// }
-//
-//
-// /**
-//  * Blockquotes
-//  */
-// blockquote {
-//   color: $grey-color;
-//   border-left: 4px solid $grey-color-light;
-//   padding-left: $spacing-unit / 2;
-//   @include relative-font-size(1.125);
-//   letter-spacing: -1px;
-//   font-style: italic;
-//
-//   > :last-child {
-//     margin-bottom: 0;
-//   }
-// }
-//
-//
-//
-// /**
-//  * Code formatting
-//  */
-// pre,
-// code {
-//   @include relative-font-size(0.9375);
-//   background-color: $grey-color-light;
-// }
-//
-// code {
-//   padding: 1px 5px;
-// }
-//
-// pre {
-//   padding: 8px 12px;
-//   overflow-x: auto;
-//
-//   > code {
-//     border: 0;
-//     padding-right: 0;
-//     padding-left: 0;
-//   }
-// }
-//
-//
-//
-// /**
-//  * Wrapper
-//  */
-// .wrapper {
-//   max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-//   max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
-//   margin-right: auto;
-//   margin-left: auto;
-//   padding-right: $spacing-unit;
-//   padding-left: $spacing-unit;
-//   @extend %clearfix;
-//
-//   @include media-query($on-laptop) {
-//     max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-//     max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-//     padding-right: $spacing-unit / 2;
-//     padding-left: $spacing-unit / 2;
-//   }
-// }
-//
-//
-//
-// /**
-//  * Clearfix
-//  */
-// %clearfix:after {
-//   content: "";
-//   display: table;
-//   clear: both;
-// }
-//
-//
-//
-// /**
-//  * Icons
-//  */
-// .keybase-icon {
-//   transform: translateY(2px);
-//   height: 17px;
-// }
+
+
+
+
+
+
+
+
+/* ANIMATION */
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/**
+ * Reset some basic elements
+ */
+
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0;
+}
+
+
+/**
+ * Basic styling
+ */
+body {
+  background-color: darken($blue-color-dark, 5%);
+  font-family: $base-font-family;
+  font-weight: 400;
+  color: $text-color;
+  @include relative-font-size(1);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+     -moz-font-feature-settings: "kern" 1;
+       -o-font-feature-settings: "kern" 1;
+          font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
+
+
+/**
+  * Links
+  */
+a {
+  color: $blue-color-light;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:visited {
+    color: $blue-color-light;
+  }
+
+  &:hover {
+    color: $blue-color-light;
+    text-decoration: underline;
+  }
+}
+
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+%vertical-rhythm {
+  margin-bottom: $spacing-unit / 2;
+}
+
+pre {
+  margin-top: $spacing-unit / 6;
+}
+
+
+
+/**
+ * Images
+ */
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+
+
+/**
+ * Wrapper
+ */
+.wrapper {
+  max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+  max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $spacing-unit;
+  padding-left: $spacing-unit;
+
+  @include media-query($on-laptop) {
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+    padding-right: $spacing-unit / 2;
+    padding-left: $spacing-unit / 2;
+  }
+}
+
+/**
+  * IMPORTS
+  */
+@import
+"components/App/Header",
+"components/SearchPage/SearchPage",
+"components/SearchForm/SearchForm",
+"components/Modal/Modal",
+"components/AboutPage/AboutPage"
+;
