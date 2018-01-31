@@ -16,7 +16,6 @@ node_js:
 
 before_install:
   - npm i -g npm@^3.8.2
-  # - chmod +x .travis/deploy.sh
 install: npm install
 before_script:
   - npm prune
