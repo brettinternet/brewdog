@@ -87,8 +87,10 @@
   color: darken($text-color, 10%);
 
   .search-type {
+    margin-right: $spacing-unit;
+
     label {
-      margin-right: $spacing-unit;
+      // margin-right: $spacing-unit;
     }
     input {
       margin-right: $spacing-unit / 4;

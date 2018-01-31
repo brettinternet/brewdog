@@ -8,8 +8,8 @@ const config = {
   devtool: 'cheap-module-source-map',
 
   entry: [
-    './main.js',
-    './assets/scss/main.scss',
+    './index.js',
+    './main.scss',
   ],
 
   context: resolve(__dirname, 'app'),
@@ -37,7 +37,7 @@ const config = {
     }),
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
     new ExtractTextPlugin({ filename: './style.css', disable: false, allChunks: true }),
-    new CopyWebpackPlugin([{ from: './vendors', to: 'vendors' }]),
+    // new CopyWebpackPlugin([{ from: './vendors', to: 'vendors' }]),
   ],
 
   module: {

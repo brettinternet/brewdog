@@ -6,7 +6,7 @@ cache:
 branches:
   only:
       - master
-      - /^brettinternet/.*$/
+      - gh-pages
 notifications:
   email: false
 node_js:
@@ -20,3 +20,10 @@ before_script:
 script:
   - npm run test
 install: npm install
+
+after_success:
+  - deploy.sh
+
+env:
+  global:
+    - secure: "yBpCI9ZjKYv81KG40BglLqYWkLnNa8vsfR3/ub/0DWQfOsIgCWNC74psnhF5Ux+O9gPLuerIDoXZ7NRPA8VX6VzSnJ3xDb5ApABheNt4bonODoEJJIRZwSS6fQMsWe6gv6qpmLd4NyaER98uru/nc+1kdNAbR2oijakV3a6jvAEZth8rVJxNs+ahUvcq7D5TDs48Au+6eGe2gvZimjqNjOjCxulXvM+tw7TZzRk9+QAFYSfgn32cz47qjesT2Z0IxZAIozjYOSZeYC/zV+395JnbKjkkDnsQt4UmtRVehP0sHDpGrKL+Bzmo9oQscbK2OvWg14Dvo2ZxzrdZwdB0mUsvAQAMnUfUq+8vCy3EtomCZYrp9yiRoUJL3zp4yLGKYa5b9JnqwP3C6eXbcPI5dh22q/jb99Mqa4bG/TFq3zZsRQXdKbB9OwwVynob5y5MXUPchcsRwU487hnj8Rb0R14AnA9qIv2RuUfiLs2c3Ey5zx48z4nnJic4f+1QVgdLzQx7OqpiW48oNV4hK6yCAiwKMxRg7HUlqsNMVlUdJEOiKJAWMDEoFNsPONuKdR+NN3A7Pg+9+zxkyegk4z3S5d66A1N4GJYIw+EQ4Vn+PZFMGjWsZjj/V7M7q6ua33XprIBVw2yQkRr6vzs5mIPUE01wO6PggAUguk8wO/V8YO8="

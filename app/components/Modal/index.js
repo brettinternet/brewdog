@@ -41,45 +41,69 @@ class Modal extends Component {
     this.props.actions.searchData(getSelectedUrl(id));
   }
 
+  stopPropagation = (e) => {
+    e.stopPropagation();
+  }
+
   render() {
     const drink = this.props.beer.filter(drink => drink.id == this.props.settings.selectedBeer)[0];
-
+    console.log(drink);
     if (!drink) return (<Loader />)
     return (
       <div className="overlay" onClick={this.handleCloseModal}>
         <div className="modal">
-          <div className="modal-window">
-            {
-              this.props.favorites.some(fav => fav.id === drink.id) ?
-                <button className="btn fav-btn"
-                  id={`drink-${drink.id}`}
-                  onClick={this.handleRemoveFavorite}
-                >
-                  <i className="fa fa-heart"></i>
-                </button>
-              :
-                <button className="btn fav-btn"
-                  id={`drink-${drink.id}`}
-                  onClick={this.handleAddFavorite}
-                >
-                  <i className="fa fa-heart-o"></i>
-                </button>
-            }
+          <div className="modal-window" onClick={this.stopPropagation}>
+            <button className="btn close-btn"
+              onClick={this.handleCloseModal}
+            >
+              <i className="fa fa-times"></i>
+            </button>
             <div className="name">
-              <h3>
+              {
+                this.props.favorites.some(fav => fav.id === drink.id) ?
+                  <button className="btn fav-btn"
+                    id={`drink-${drink.id}`}
+                    onClick={this.handleRemoveFavorite}
+                  >
+                    <i className="fa fa-heart"></i>
+                  </button>
+                :
+                  <button className="btn fav-btn"
+                    id={`drink-${drink.id}`}
+                    onClick={this.handleAddFavorite}
+                  >
+                    <i className="fa fa-heart-o"></i>
+                  </button>
+              }
+              <h1>
                 { drink.name }
-              </h3>
+              </h1>
+              <h4>{ drink.tagline }</h4>
             </div>
             <div className="row">
               <div className="img-wrapper">
                 <img src={ drink.image_url } alt={`bottle of ${drink.name}`} />
+                <div className="volume">{ drink.volume.value } { drink.volume.unit }</div>
               </div>
               <div className="info">
                 <div className="date">
-                  { drink.first_brewed }
+                  <i className="fa fa-beer"></i>{ drink.first_brewed }
                 </div>
                 <div className="description">
                   { drink.description }
+                </div>
+                <div className="tips">
+                  { drink.brewers_tips }
+                </div>
+                <div className="row">
+                  <i className="fa fa-cutlery"></i>
+                  {
+                    drink.food_pairing.map((food, i) => (
+                      <a key={`food-${i}`} className="food-item" target="_blank"
+                        href={`https://www.google.com/search?q=${food.split(' ').join('+')}`}
+                      >{food}</a>
+                    ))
+                  }
                 </div>
               </div>
             </div>
@@ -97,10 +121,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-  sortBy: 'id',
-  sortAsc: true,
-  page: 1,
-  perPage: 20,
+  drink: {},
   beer: []
 };
 
