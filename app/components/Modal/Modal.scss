@@ -24,4 +24,13 @@
   border: 1px solid $teal-color;
   border-top: $spacing-unit / 1.5 solid $teal-color;
   border-radius: 3px;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  img {
+    height: $spacing-unit * 16;
+  }
 }

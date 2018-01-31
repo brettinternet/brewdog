@@ -22,7 +22,19 @@
 .search-results {
 
   .sizer {
-    width: $content-width;
+    width: calc(100%/3);
+  }
+
+  @include media-query($on-laptop) {
+    .sizer {
+      width: 50%;
+    }
+  }
+
+  @include media-query($on-mobile) {
+    .sizer {
+      width: 100%;
+    }
   }
 
   .results-count {
@@ -30,7 +42,8 @@
   }
 
   .card {
-    width: $spacing-unit * 10;
+    height: $spacing-unit * 11;
+    width: 250px;
     float: left;
     position: relative;
     cursor: pointer;
@@ -45,7 +58,7 @@
     .name {
       position: absolute;
       z-index: 1;
-      padding: 7px 5px;
+      padding: 10px 7px;
       color: $text-color;
     }
 

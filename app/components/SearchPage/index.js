@@ -9,7 +9,7 @@ import { getSearchUrl, getRandomUrl } from '../../utils/getUrl';
 
 import SearchForm from '../SearchForm';
 import SearchResults from './SearchResults';
-import BeerLoader from './BeerLoader';
+import Loader from '../App/Loader';
 import DisplayError from './DisplayError';
 import PageButtons from '../SearchForm/PageButtons';
 import Modal from '../Modal';
@@ -152,8 +152,8 @@ class SearchPage extends Component {
   }
 
   render () {
+    console.log(this.props);
     const multiplePagesBool = this.props.beer.length == this.props.settings.perPage;
-    const selectedBeer = this.props.beer.filter(drink => drink.id == this.props.settings.selectedBeer)[0];
     const searchFormProps = {
       searchBy: this.props.settings.searchBy,
       handleSearchByChange: this.handleSearchByChange,
@@ -192,7 +192,7 @@ class SearchPage extends Component {
 
         {
           this.props.ajaxCallsInProgress > 0 ?
-            <BeerLoader />
+            <Loader />
           :
             <SearchResults />
         }
@@ -208,10 +208,7 @@ class SearchPage extends Component {
         }
         {
           this.props.settings.selectedBeer &&
-          <Modal
-            beer={selectedBeer}
-            onClick={this.handleCloseModal}
-          />
+          <Modal />
         }
 
       </main>

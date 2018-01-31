@@ -11,6 +11,7 @@ import shortenText from '../../utils/shortenText';
 class SearchResults extends Component {
 
   handleAddFavorite = (e) => {
+    e.stopPropagation();
     let newFavorite = this.props.beer.filter(drink => `drink-${drink.id}` === e.currentTarget.id)[0];
     if (!newFavorite)
       // handle for error, can't find fav
@@ -19,6 +20,7 @@ class SearchResults extends Component {
   }
 
   handleRemoveFavorite = (e) => {
+    e.stopPropagation();
     let notFavoriteId = e.currentTarget.id;
     if (notFavoriteId) notFavoriteId = Number(notFavoriteId.split('-')[1]);
     if (!notFavoriteId)
@@ -32,10 +34,11 @@ class SearchResults extends Component {
     this.props.actions.saveSettings({ selectedBeer });
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.shuffle = new Shuffle(this.element, {
       itemSelector: '.card',
-      sizer: this.sizer
+      sizer: this.sizer,
+      isCentered: true
     })
   }
 

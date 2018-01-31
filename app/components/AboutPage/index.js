@@ -8,6 +8,8 @@ export default class AboutPage extends Component { // eslint-disable-line react/
   }
 
   render() {
+    console.log(this.props);
+
     return (
       <main className="about-page">
         <section>

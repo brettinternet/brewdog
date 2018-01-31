@@ -24,5 +24,9 @@ export function getSearchUrl(searchSettings) {
 }
 
 export function getRandomUrl() {
-  return { url: 'https://api.punkapi.com/v2/beers/random', random: true };
+  return { url: 'https://api.punkapi.com/v2/beers/random' };
+}
+
+export function getSelectedUrl(id) {
+  return { url: `https://api.punkapi.com/v2/beers/${id}` }
 }
