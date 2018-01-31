@@ -1,0 +1,158 @@
+.overlay {
+  z-index: 2;
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modal {
+  z-index: 99;
+  margin-top: $spacing-unit;
+  position: absolute;
+  top: $spacing-unit;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 720px;
+}
+
+@include media-query($on-laptop) {
+  .modal {
+    width: 80%;
+  }
+}
+
+@include media-query($on-palm) {
+  .modal {
+    width: 90%;
+  }
+}
+
+
+.modal-window {
+  max-height: 90%;
+  overflow-y: hidden;
+  background-color: $blue-color-dark;
+  border: 1px solid $teal-color;
+  border-top: $spacing-unit / 1.5 solid $teal-color;
+  border-radius: 3px;
+  padding: $spacing-unit $spacing-unit * 2;
+  position: relative;
+
+  .close-btn {
+    background-color: rgba($blue-color-dark, 0);
+    color: $red-color;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: $spacing-unit / 1.5;
+    @include relative-font-size(1.5);
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  @include media-query($on-laptop) {
+    .row {
+      display: block;
+    }
+  }
+
+  .name {
+    margin-bottom: $spacing-unit;
+
+    .btn {
+      margin: 0 $spacing-unit / 3 0 0;
+      transform: translateY(-8px);
+    }
+
+    h1 {
+      display: inline-block;
+      margin: 0;
+    }
+  }
+
+  .img-wrapper {
+    background-color: rgba($cement-color-dry, .2);
+    padding: $spacing-unit / 3;
+    margin-right: $spacing-unit;
+    position: relative;
+
+    .volume {
+      padding: 4px 6px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      background-color: $blue-color-dark;
+      @include relative-font-size(.7);
+      font-weight: 700;
+    }
+  }
+
+  img {
+    width: $spacing-unit * 10;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .date {
+    @include relative-font-size(.8);
+    color: $grey-color;
+    font-weight: 700;
+  }
+
+  .fa-beer {
+    color: $text-color;
+    margin-right: 5px;
+  }
+
+  .description {
+    margin-bottom: $spacing-unit / 2;
+  }
+
+  .tips {
+    font-style: italic;
+    @include relative-font-size(.8);
+  }
+
+  .fa-cutlery, .food-item {
+    padding: 5px 7px;
+    display: inline-block;
+    margin: $spacing-unit / 4 $spacing-unit / 4 0 0;
+  }
+
+  .food-item {
+    background-color: lighten($grey-color, 15%);
+    color: $blue-color-dark;
+    font-weight: 700;
+    @include relative-font-size(.7);
+
+    &:hover {
+      background-color: $grey-color;
+    }
+  }
+}
+
+@include media-query ($on-laptop) {
+  .modal-window {
+    padding: $spacing-unit $spacing-unit;
+
+    .img-wrapper {
+      margin: 0 auto;
+      padding: $spacing-unit / 2;
+    }
+
+    img {
+      width: auto;
+      height: $spacing-unit * 12;
+    }
+
+    .date {
+      margin-top: $spacing-unit / 2;
+    }
+  }
+}
