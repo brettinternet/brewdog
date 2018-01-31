@@ -1,28 +1,34 @@
 sudo: false
 language: node_js
 cache:
+  yarn: true
   directories:
     - node_modules
+
 branches:
   only:
       - master
-      - gh-pages
+
 notifications:
   email: false
 node_js:
-  - "node"
-  - "lts/*"
   - 7
+
 before_install:
   - npm i -g npm@^3.8.2
+install: npm install
 before_script:
   - npm prune
 script:
-  - npm run test
-install: npm install
-
-after_success:
-  - deploy.sh
+  - npm run build
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GH_TOKEN
+  keep-history: true
+  local-dir: dist
+  on:
+    branch: master
 
 env:
   global:

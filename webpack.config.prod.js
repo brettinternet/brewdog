@@ -37,7 +37,6 @@ const config = {
     }),
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
     new ExtractTextPlugin({ filename: './style.css', disable: false, allChunks: true }),
-    // new CopyWebpackPlugin([{ from: './vendors', to: 'vendors' }]),
   ],
 
   module: {

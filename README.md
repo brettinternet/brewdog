@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/brettinternet/brewdog.svg?branch=master)](https://travis-ci.org/brettinternet/brewdog)
 
-This is a simple frontend demonstration to hit the BrewDog API.
+This is a simple frontend demonstration to hit the BrewDog API. [View the demo](http://brettinternet.github.io/brewdog)
 
 I'm erring on the side of overkill with some of the features, but it's been good practice since I've been doing a lot of python lately. For example, I wrote this in React, but something this simple could have easily been mocked up in vanilla JS.
 

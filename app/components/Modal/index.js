@@ -47,7 +47,6 @@ class Modal extends Component {
 
   render() {
     const drink = this.props.beer.filter(drink => drink.id == this.props.settings.selectedBeer)[0];
-    console.log(drink);
     if (!drink) return (<Loader />)
     return (
       <div className="overlay" onClick={this.handleCloseModal}>

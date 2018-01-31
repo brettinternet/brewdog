@@ -81,6 +81,8 @@
     padding: $spacing-unit / 3;
     margin-right: $spacing-unit;
     position: relative;
+    min-width: $spacing-unit * 6;
+    height: fit-content;
 
     .volume {
       padding: 4px 6px;
@@ -110,13 +112,10 @@
     margin-right: 5px;
   }
 
-  .description {
-    margin-bottom: $spacing-unit / 2;
-  }
-
   .tips {
     font-style: italic;
     @include relative-font-size(.8);
+    margin: $spacing-unit / 2 0;
   }
 
   .fa-cutlery, .food-item {

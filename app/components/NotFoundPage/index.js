@@ -11,7 +11,7 @@ const NotFoundPage = () => {
         <p>
           ¯\_(ツ)_/¯
         </p>
-        <Link to="/"> Go back to homepage </Link>
+        <Link to="/brewdog"> Go back to homepage </Link>
       </section>
     </main>
   );

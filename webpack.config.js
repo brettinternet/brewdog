@@ -28,7 +28,8 @@ const config = {
   devServer: {
     hot: true,
     contentBase: resolve(__dirname, 'build'),
-    publicPath: '/'
+    publicPath: '/',
+    historyApiFallback: true
   },
 
   module: {
@@ -140,7 +141,7 @@ const config = {
       },
     }),
     new HtmlWebpackPlugin({
-      template: './index.ejs',
+      template: './index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true

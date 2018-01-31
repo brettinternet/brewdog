@@ -6,15 +6,15 @@ export default function Header() {
     <header className="header">
       <div className="table">
         <ul>
-          <li><NavLink to="/">BrewDog</NavLink></li>
+          <li><NavLink to="/brewdog">BrewDog</NavLink></li>
         </ul>
         <div className="pad"></div>
         <ul>
           <li>
-            <NavLink to="/" activeClassName="active-link">Home</NavLink>
+            <NavLink to="/brewdog" activeClassName="active-link" exact={true}>Search</NavLink>
           </li>
           <li>
-            <NavLink to="/about" activeClassName="active-link">About</NavLink>
+            <NavLink to="/brewdog/about" activeClassName="active-link">About</NavLink>
           </li>
         </ul>
       </div>

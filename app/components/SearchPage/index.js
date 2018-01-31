@@ -152,7 +152,6 @@ class SearchPage extends Component {
   }
 
   render () {
-    console.log(this.props);
     const multiplePagesBool = this.props.beer.length == this.props.settings.perPage;
     const searchFormProps = {
       searchBy: this.props.settings.searchBy,
