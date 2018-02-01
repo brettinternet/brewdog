@@ -47,8 +47,8 @@ const config = {
         loader: 'babel-loader',
       },
       {
-        test: /\.scss$/,
-        exclude: /node_modules/,
+        test: /(\.css|\.scss)$/,
+        // exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [

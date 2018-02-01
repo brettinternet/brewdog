@@ -18,6 +18,7 @@ const SearchForm = (props) => {
         onClick={props.submitSearch}
         onClickRandom={props.submitRandomSearch}
         onClickFavorites={props.handleViewFavorites}
+        searchBy={props.searchBy}
       />
 
       <div className="search-options">

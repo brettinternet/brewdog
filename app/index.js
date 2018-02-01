@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import configureStore, { history } from './store/configureStore';
 import App from './components/App';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import './main.scss';
 const store = configureStore();
 

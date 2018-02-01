@@ -75,14 +75,31 @@
     }
   }
 
-  .date {
-    @include relative-font-size(.8);
-    color: $grey-color;
-    font-weight: 700;
-    margin-left: 5px;
+  .details {
+    .fa {
+      margin-right: 5px;
+    }
+
+    .date, .abv {
+      @include relative-font-size(.8);
+      font-weight: 700;
+    }
+
+    .date {
+      color: $grey-color;
+      margin-left: 5px;
+      float: left;
+    }
+
+    .abv {
+      color: lighten($red-color, 20%);
+      margin-right: 5px;
+      float: right;
+    }
   }
 
   .description {
+    clear: both;
     @include relative-font-size(.8);
     padding: 0 5px;
   }

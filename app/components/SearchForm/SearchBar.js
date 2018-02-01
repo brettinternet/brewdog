@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function SearchBar({ value, onKeyPress, onChange, onClick, onClickRandom, onClickFavorites }) {
+export default function SearchBar({ value, onKeyPress, onChange, onClick, onClickRandom, onClickFavorites, searchBy }) {
   return (
     <div className="search-bar row">
-      <input type="search" placeholder="Search" className="input"
+      <input type="search" placeholder={`Search ${searchBy === 'beer_name' ? 'Beer' : 'Food'}`} className="input"
         onChange={onChange}
         onKeyPress={onKeyPress}
         value={value}

@@ -85,8 +85,9 @@ class Modal extends Component {
                 <div className="volume">{ drink.volume.value } { drink.volume.unit }</div>
               </div>
               <div className="info">
-                <div className="date">
-                  <i className="fa fa-beer"></i>{ drink.first_brewed }
+                <div className="details">
+                  <span className="date"><i className="fa fa-beer"></i>{ drink.first_brewed }</span>
+                  <span className="abv"><i className="fa fa-tint"></i>{ drink.abv }%</span>
                 </div>
                 <div className="description">
                   { drink.description }

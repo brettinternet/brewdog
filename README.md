@@ -4,12 +4,15 @@
 
 This is a simple frontend demonstration to hit the BrewDog API. [View the demo](http://brettinternet.github.io/brewdog)
 
-I'm erring on the side of overkill with some of the features, but it's been good practice since I've been doing a lot of python lately. For example, I wrote this in React, but something this simple could have easily been mocked up in vanilla JS.
+I'm erring on the side of overkill with some of the features, but it's been good practice with some JS libraries since I've been doing a lot of python lately. For example, I handled state with Redux, but something this simple could have used the built-in React component state APIs or Flux.
 
 #### Features
-- [x] Redux
+- [x] Redux state mangement
 - [x] Webpack with Hot Reload
 - [x] Redux thunk async actions
+- [x] Build and deploy with Travis CI
+- [x] Save favorites and settings state in Local Storage
+- [x] Pagination and other search filters
 
 
 ---

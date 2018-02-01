@@ -10,12 +10,11 @@
 
 .modal {
   z-index: 99;
-  margin-top: $spacing-unit;
   position: absolute;
-  top: $spacing-unit;
   left: 50%;
   transform: translateX(-50%);
   width: 720px;
+  top: $spacing-unit;
 }
 
 @include media-query($on-laptop) {
@@ -27,12 +26,13 @@
 @include media-query($on-palm) {
   .modal {
     width: 90%;
+    top: 5px;
   }
 }
 
 
 .modal-window {
-  max-height: 90%;
+  max-height: 90vh;
   overflow-y: hidden;
   background-color: $blue-color-dark;
   border: 1px solid $teal-color;
@@ -81,8 +81,14 @@
     padding: $spacing-unit / 3;
     margin-right: $spacing-unit;
     position: relative;
-    min-width: $spacing-unit * 6;
     height: fit-content;
+    width: 20%;
+
+    img {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
 
     .volume {
       padding: 4px 6px;
@@ -95,21 +101,33 @@
     }
   }
 
-  img {
-    width: $spacing-unit * 10;
-    display: block;
-    margin: 0 auto;
+  .info {
+    width: 80%;
   }
 
-  .date {
-    @include relative-font-size(.8);
-    color: $grey-color;
-    font-weight: 700;
+  .details {
+    .fa {
+      margin-right: 5px;
+    }
+
+    .date, .abv {
+      @include relative-font-size(.8);
+      font-weight: 700;
+    }
+
+    .date {
+      color: $grey-color;
+      margin-left: 5px;
+    }
+
+    .abv {
+      color: lighten($red-color, 20%);
+      margin: 0 5px 0 7px;
+    }
   }
 
-  .fa-beer {
-    color: $text-color;
-    margin-right: 5px;
+  .description {
+    clear: both;
   }
 
   .tips {
@@ -139,19 +157,35 @@
 @include media-query ($on-laptop) {
   .modal-window {
     padding: $spacing-unit $spacing-unit;
+    overflow-y: scroll;
+    max-height: 95vh;
 
     .img-wrapper {
+      width: auto;
       margin: 0 auto;
       padding: $spacing-unit / 2;
+
+      img {
+        width: auto;
+        height: $spacing-unit * 8;
+      }
     }
 
-    img {
-      width: auto;
-      height: $spacing-unit * 12;
+    .info {
+      width: 100%;
     }
 
     .date {
       margin-top: $spacing-unit / 2;
+    }
+  }
+}
+
+@include media-query ($on-palm) {
+  .modal-window {
+    padding: $spacing-unit / 4 $spacing-unit / 3;
+    img {
+      height: $spacing-unit * 6;
     }
   }
 }
